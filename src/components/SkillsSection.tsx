@@ -4,9 +4,8 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
-// 3D Skill Orb Component
-const SkillOrb = ({ skill, position, color }: { 
-  skill: string; 
+// 3D Skill Orb Component - Simple glowing sphere
+const SkillOrb = ({ position, color }: { 
   position: [number, number, number]; 
   color: string;
 }) => {
@@ -14,21 +13,18 @@ const SkillOrb = ({ skill, position, color }: {
 
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <group position={position}>
-        <mesh ref={meshRef}>
-          <sphereGeometry args={[0.8, 32, 32]} />
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={0.2}
-            roughness={0.3}
-            metalness={0.8}
-            transparent
-            opacity={0.9}
-          />
-        </mesh>
-        {/* Simple glowing orb without text */}
-      </group>
+      <mesh ref={meshRef} position={position}>
+        <sphereGeometry args={[0.8, 32, 32]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.2}
+          roughness={0.3}
+          metalness={0.8}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
     </Float>
   );
 };
@@ -71,11 +67,11 @@ const SkillsSection = () => {
   ];
 
   const orbSkills = [
-    { skill: 'React', position: [0, 0, 0] as [number, number, number], color: '#a855f7' },
-    { skill: 'Node.js', position: [3, 1, -1] as [number, number, number], color: '#06b6d4' },
-    { skill: 'Three.js', position: [-2, -1, 1] as [number, number, number], color: '#8b5cf6' },
-    { skill: 'Python', position: [1, -2, 2] as [number, number, number], color: '#06b6d4' },
-    { skill: 'TypeScript', position: [-3, 1, -2] as [number, number, number], color: '#a855f7' },
+    { position: [0, 0, 0] as [number, number, number], color: '#a855f7' },
+    { position: [3, 1, -1] as [number, number, number], color: '#06b6d4' },
+    { position: [-2, -1, 1] as [number, number, number], color: '#8b5cf6' },
+    { position: [1, -2, 2] as [number, number, number], color: '#06b6d4' },
+    { position: [-3, 1, -2] as [number, number, number], color: '#a855f7' },
   ];
 
   const containerVariants = {
@@ -155,12 +151,11 @@ const SkillsSection = () => {
                   <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
                   <pointLight position={[-10, -10, -10]} intensity={0.5} color="#06b6d4" />
                   
-                  {orbSkills.map((skill, index) => (
+                  {orbSkills.map((orb, index) => (
                     <SkillOrb
-                      key={skill.skill}
-                      skill={skill.skill}
-                      position={skill.position}
-                      color={skill.color}
+                      key={index}
+                      position={orb.position}
+                      color={orb.color}
                     />
                   ))}
                   
