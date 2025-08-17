@@ -44,7 +44,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <span className="gradient-text">John Doe</span>
+              <span className="gradient-text">KARTHIK N R</span>
             </motion.h1>
 
             {/* Title */}
@@ -54,8 +54,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
-              Full-Stack Developer & <br />
-              <span className="text-accent">3D Experience Creator</span>
+              Software Developer & <br />
+              <span className="text-accent">AI Enthusiast</span>
             </motion.h2>
 
             {/* Description */}

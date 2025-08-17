@@ -60,10 +60,16 @@ const SkillsSection = () => {
     { name: 'Figma', level: 83, color: '#F24E1E' },
   ];
 
+  const cloudDevOpsSkills = [
+    { name: 'Kubernetes', level: 80, color: '#326CE5' },
+    { name: 'Terraform', level: 78, color: '#623CE4'}
+  ];
+
   const skillCategories = [
     { title: 'Frontend', skills: frontendSkills, gradient: 'from-blue-500 to-cyan-500' },
     { title: 'Backend', skills: backendSkills, gradient: 'from-green-500 to-emerald-500' },
-    { title: 'Tools & 3D', skills: toolsSkills, gradient: 'from-purple-500 to-pink-500' },
+    { title: 'Tools', skills: toolsSkills, gradient: 'from-purple-500 to-pink-500' },
+    { title: 'Cloud & DevOps', skills: cloudDevOpsSkills, gradient: 'from-yellow-500 to-orange-500' }
   ];
 
   const orbSkills = [
@@ -103,7 +109,6 @@ const SkillsSection = () => {
     >
       <div className="flex justify-between items-center">
         <span className="text-foreground font-medium">{skill.name}</span>
-        <span className="text-muted-foreground text-sm">{skill.level}%</span>
       </div>
       <div className="h-3 bg-muted rounded-full overflow-hidden">
         <motion.div
@@ -141,7 +146,7 @@ const SkillsSection = () => {
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column - 3D Skills Visualization */}
-            <motion.div variants={itemVariants} className="relative">
+            {/* <motion.div variants={itemVariants} className="relative">
               <div className="h-96 md:h-[500px] relative">
                 <Canvas
                   camera={{ position: [0, 0, 8], fov: 45 }}
@@ -167,18 +172,16 @@ const SkillsSection = () => {
                   />
                 </Canvas>
               </div>
-
-              {/* Decorative elements */}
               <div className="absolute -top-10 -left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-pulse-glow" />
               <div className="absolute -bottom-10 -right-10 w-16 h-16 bg-accent/20 rounded-full blur-xl animate-pulse-glow" />
-            </motion.div>
+            </motion.div> */}
 
             {/* Right Column - Skill Categories */}
-            <motion.div variants={itemVariants} className="space-y-8">
+            <motion.div variants={itemVariants} className="flex flex-row gap-8">
               {skillCategories.map((category, categoryIndex) => (
                 <motion.div
                   key={category.title}
-                  className="glass p-6 rounded-2xl"
+                  className="glass p-6 rounded-2xl flex-1 min-w-[220px]"
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.02,
