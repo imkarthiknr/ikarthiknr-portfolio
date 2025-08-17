@@ -91,7 +91,7 @@ const EducationSection = () => {
   };
 
   return (
-    <section id="education" className="min-h-screen flex items-center py-20 relative">
+    <section id="education" className="min-h-screen flex items-center py-20 relative scroll-mt-20">{/* Added scroll-mt-20 for navigation offset */}
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
