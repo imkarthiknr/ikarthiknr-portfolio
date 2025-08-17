@@ -9,9 +9,10 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'about', label: 'About', icon: User },
+    { id: 'experience', label: 'Experience', icon: Briefcase },
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Code },
-    { id: 'projects', label: 'Projects', icon: Briefcase },
+    { id: 'projects', label: 'Projects', icon: FileText },
     { id: 'contact', label: 'Contact', icon: Mail }
   ];
 
