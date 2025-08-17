@@ -1,14 +1,26 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Hero3D from './Hero3D';
 import heroCharacter from '@/assets/hero-character.png';
 
+const MediumIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 32 32" fill="currentColor" width={props.width || 20} height={props.height || 20} {...props}>
+    <g>
+      <ellipse cx="8.5" cy="16" rx="6.5" ry="7" />
+      <ellipse cx="23.5" cy="16" rx="2.5" ry="7" />
+      <ellipse cx="28.5" cy="16" rx="1.5" ry="7" />
+    </g>
+  </svg>
+);
+
 const HeroSection = () => {
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/imkarthiknr', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/ikarthiknr/', label: 'LinkedIn' },
+    { icon: Twitter, href: 'https://x.com/ikarthiknr', label: 'Twitter' },
+    { icon: Instagram, href: 'https://www.instagram.com/ikarthiknr/', label: 'Instagram' },
+    { icon: MediumIcon, href: 'https://medium.com/@ikarthiknr', label: 'Medium' },
   ];
 
   return (
@@ -65,9 +77,10 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.1 }}
             >
-              Crafting immersive digital experiences with modern web technologies. 
-              Specialized in React, Three.js, and creating stunning interactive applications 
-              that push the boundaries of web development.
+              a System Development Engineer at Amazon with 4+ years of experience building scalable backend systems and developer tools. 
+              Specialized in Cloud and Generative AI Areas, and have contributed to projects like Amazon Q and CodeWhisperer. 
+              Outside of work, I explore competitive programming, write tech blogs, and share travel stories.
+              {/*I'm currently seeking impactful engineering roles at top tech companies where I can solve complex problems and grow with high-performing teams*/}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -91,15 +104,21 @@ const HeroSection = () => {
                   →
                 </motion.div>
               </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="glass border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-6 text-lg font-semibold rounded-xl glow-cyan hover:glow-intense transition-all duration-300"
+              <a
+                href="https://drive.google.com/uc?export=download&id=1pwbYSQkTANetiKjbF54r32DXtKFKhtF6"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
               >
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
-              </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="glass border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-6 text-lg font-semibold rounded-xl glow-cyan hover:glow-intense transition-all duration-300"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download CV
+                </Button>
+              </a>
             </motion.div>
 
             {/* Social Links */}

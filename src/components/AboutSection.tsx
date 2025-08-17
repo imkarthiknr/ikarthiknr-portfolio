@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code2, Palette, Rocket, Zap } from 'lucide-react';
+import { Code, Cloud, Rocket, Layout } from 'lucide-react';
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -8,24 +8,24 @@ const AboutSection = () => {
 
   const skills = [
     {
-      icon: Code2,
-      title: "Full-Stack Development",
-      description: "Expertise in React, Node.js, TypeScript, and modern web frameworks"
+      icon: Code,
+      title: "Back-End Development",
+      description: "Expert in Python, Node.js, and scalable backend architectures"
     },
     {
-      icon: Palette,
-      title: "3D & Animation",
-      description: "Creating immersive experiences with Three.js, WebGL, and Framer Motion"
+      icon: Cloud,
+      title: "Cloud & Containerization",
+      description: "Proficient in AWS, Docker, and Kubernetes for scalable applications"
+    },
+    {
+      icon: Layout,
+      title: "System Design",
+      description: "Designing robust, scalable systems for high availability and performance"
     },
     {
       icon: Rocket,
       title: "Performance Optimization",
       description: "Building fast, scalable applications with best practices"
-    },
-    {
-      icon: Zap,
-      title: "Innovation",
-      description: "Always exploring new technologies and pushing creative boundaries"
     }
   ];
 
@@ -75,21 +75,20 @@ const AboutSection = () => {
                   className="text-xl leading-relaxed"
                   variants={itemVariants}
                 >
-                  I'm a passionate <span className="text-accent font-semibold">full-stack developer</span> who 
-                  loves creating digital experiences that blend creativity with cutting-edge technology.
+                  I'm a passionate <span className="text-accent font-semibold">software developer</span> with 
+                  4+ years of experience building scalable systems and solving complex problems with cutting-edge technology.
                 </motion.p>
                 
                 <motion.p variants={itemVariants}>
-                  With over <span className="text-primary font-semibold">5 years of experience</span>, 
-                  I specialize in building interactive web applications using React, Three.js, and modern 
-                  JavaScript frameworks. My journey began with a curiosity about how websites work, 
-                  and has evolved into a passion for creating immersive 3D experiences on the web.
+                  Currently, I work as a <span className="text-primary font-semibold">System Development Engineer</span>, 
+                  Where I design and develop optimized frameworks & backend services that power high-impact applications.
+                  My technical toolkit includes Python, React, AWS & Docker, among others. 
                 </motion.p>
                 
                 <motion.p variants={itemVariants}>
-                  When I'm not coding, you'll find me exploring new technologies, contributing to 
-                  open-source projects, or experimenting with 3D art and animations. I believe in 
-                  the power of continuous learning and love sharing knowledge with the developer community.
+                  Beyond code, I’m an avid learner and explorer — whether it’s diving into competitive programming, 
+                  sharing travel stories from places like Bangkok, or experimenting with new tech stacks like Machine Learning. 
+                  I also enjoy writing and connecting with the developer community through platforms like DEV.to and Codeforces.
                 </motion.p>
               </div>
 
@@ -97,7 +96,7 @@ const AboutSection = () => {
                 className="flex flex-wrap gap-4 pt-6"
                 variants={itemVariants}
               >
-                {['React', 'TypeScript', 'Three.js', 'Node.js', 'Python', 'WebGL', 'Framer Motion', 'GraphQL'].map((tech, index) => (
+                {['Python', 'AWS', 'Docker', 'Kubernetes', 'React', 'TypeScript', 'Serverless-Design', 'NoSQL'].map((tech, index) => (
                   <motion.span
                     key={tech}
                     className="px-4 py-2 glass rounded-full text-sm font-medium text-accent border border-accent/20"
@@ -115,7 +114,7 @@ const AboutSection = () => {
             {/* Right Column - Skills Grid */}
             <motion.div 
               variants={itemVariants}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 md:grid-cols-1 gap-6"
             >
               {skills.map((skill, index) => (
                 <motion.div

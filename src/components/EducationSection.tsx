@@ -9,54 +9,55 @@ const EducationSection = () => {
 
   const education = [
     {
-      level: "Masters in Engineering",
-      degree: "M.Tech in Computer Science",
-      institution: "Indian Institute of Technology",
-      location: "Bangalore, India",
-      year: "2020 - 2022",
-      grade: "8.9 CGPA",
+      level: "Masters in Technology",
+      degree: "M.Tech in Software Systems",
+      institution: "BITS Pilani - WILP",
+      location: "Pilani, India",
+      year: "2023 - 2025",
+      grade: "6.7 CGPA",
       icon: Trophy,
       color: "primary",
-      description: "Specialized in Machine Learning and Artificial Intelligence. Completed thesis on Deep Learning applications in Computer Vision.",
+      description: "Specialized in Data Analytics. Completed Dissertation titled - \"Multimodal AI-Enhanced Educational Assistant with Real-Time Q&A and Dynamic Learning Support\".",
       highlights: [
-        "Research in AI/ML algorithms",
-        "Published 3 research papers",
-        "Teaching Assistant for Data Structures",
-        "Winner of Best Project Award"
+        "Applied principles behind modern Data Analytics techniques",
+        "Applied Statistical and Machine Learning methods on Real data.",
+        "Built Expertise in Advanced AI Topics such as Deep Learning, NLM and LLMs.",
+        "Part of programme worked on different platforms & libraries - Python, Tensorflow, NumPy, SciPi, Pandas, NLTK, Keras."
       ]
     },
     {
       level: "Bachelor's in Engineering", 
-      degree: "B.Tech in Computer Science",
-      institution: "National Institute of Technology",
-      location: "Karnataka, India",
+      degree: "B.E., in Computer Science & Engineering",
+      institution: "Sri Sairam Engineering College",
+      location: "Chennai, India",
       year: "2016 - 2020",
-      grade: "8.5 CGPA",
+      grade: "7.7 CGPA",
       icon: GraduationCap,
       color: "accent",
-      description: "Comprehensive study of computer science fundamentals including algorithms, data structures, and software engineering principles.",
+      description: "Comprehensive study of computer science fundamentals including mathematical concepts, algorithms, data structures, and software engineering principles.",
       highlights: [
-        "Full-stack web development projects",
-        "Competitive programming champion",
-        "Head of Technical Club",
-        "Internship at Tech Startup"
+        "Ablility to solve problems using algorithms and data structures.",
+        "Attended multiple hackathons and coding competitions.",
+        "One of the organizer of the National Level Symposium - SYNSARA 2K19",
+        "Won 2nd place (Rs. 25,000 Cash prize) in Hack & Tackle Hackathon 2019.",
+        "Took Web Development workshop being part of Coding club on 2018.",
+        "Web Developer Intern - Lema labs India - 11/2019 to 02/2020"
       ]
     },
     {
       level: "Higher Secondary Certificate",
-      degree: "HSC - Science Stream",
-      institution: "Delhi Public School",
-      location: "Bangalore, India", 
+      degree: "HSC - MPC Stream",
+      institution: "Zion Matriculation Higher Secondary School",
+      location: "Chennai, India", 
       year: "2014 - 2016",
-      grade: "95.2%",
+      grade: "93.2%",
       icon: BookOpen,
       color: "secondary",
       description: "Focused on Mathematics, Physics, and Chemistry with additional computer science subjects. Foundation for engineering career.",
       highlights: [
-        "School topper in Mathematics",
-        "Science exhibition winner",
-        "Active in robotics club",
-        "Scholarship recipient"
+        "Acquired \"Scholar\" Badge - given for 90% and above in all subjects in academic year 2015-16.",
+        "Took \"French\" as second language and scored 98% in it.",
+        "Participated in various inter-school competitions in Annual Sports Day."
       ]
     }
   ];

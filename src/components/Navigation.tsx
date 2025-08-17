@@ -53,7 +53,7 @@ const Navigation = () => {
     <>
       {/* Desktop Navigation */}
       <motion.nav 
-        className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 hidden md:block"
+        className="fixed top-8 left-1/4 transform -translate-x-1/2 z-50 hidden md:block"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
