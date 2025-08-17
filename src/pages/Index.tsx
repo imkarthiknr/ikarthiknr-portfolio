@@ -52,10 +52,7 @@ const Index = () => {
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
               <div className="text-muted-foreground text-sm">
-                © 2024 John Doe. All rights reserved.
-              </div>
-              <div className="text-muted-foreground text-sm mt-4 md:mt-0">
-                Built with ❤️ using React, Three.js & Framer Motion
+                © 2024 Karthik NR. All rights reserved.
               </div>
             </div>
           </div>
