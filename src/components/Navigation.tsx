@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Briefcase, Code, Mail, FileText } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, Code, Mail, FileText, GraduationCap } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +9,7 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'about', label: 'About', icon: User },
+    { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Code },
     { id: 'projects', label: 'Projects', icon: Briefcase },
     { id: 'contact', label: 'Contact', icon: Mail }

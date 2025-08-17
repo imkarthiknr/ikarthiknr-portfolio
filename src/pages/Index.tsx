@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation';
 import ParticleBackground from '@/components/ParticleBackground';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import EducationSection from '@/components/EducationSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
@@ -28,6 +29,10 @@ const Index = () => {
         
         <ErrorBoundary>
           <AboutSection />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <EducationSection />
         </ErrorBoundary>
         
         <ErrorBoundary>
