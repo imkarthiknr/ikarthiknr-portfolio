@@ -1,106 +1,88 @@
 import { motion } from 'framer-motion';
-import { MapPin, Calendar, ArrowRight, Building2, Code, Database, Cloud, Users } from 'lucide-react';
+import { MapPin, Calendar } from 'lucide-react';
+import amazonLogo from '@/assets/aws.png';
+import prodaptLogo from '@/assets/prodapt.png';
+
+const experiences = [
+  {
+    id: "amazon-sde",
+    company: "Amazon Inc.",
+    role: "System Development Engineer I",
+    duration: "Aug 2024 - Present",
+    location: "Chennai, India",
+    type: "Full-time",
+    logo: amazonLogo,
+    responsibilities: [
+      "Designed and operated highly available distributed systems for large-scale AI evaluation platforms supporting multi-language workloads.",
+      "Built scalable infrastructure using AWS (Lambda, S3, Batch, SQS, CDK) for high-throughput processing and fault-tolerant execution.",
+      "Improved system performance by reducing execution time from 5 days to 45 hours, increasing system efficiency and reliability.",
+      "Developed automation frameworks for orchestration, dependency handling, and execution workflows across distributed services.",
+      "Implemented monitoring and logging systems (Splunk) for real-time observability, debugging, and incident analysis.",
+      "Designed mechanisms for partial execution and failure recovery, improving system resilience and reducing downtime.",
+      "Built CI/CD pipelines and automated deployment workflows using Jenkins, ensuring safe and reproducible releases.",
+      "Handled production operations, including debugging issues, release management, and system performance optimization."
+    ]
+  },
+  {
+    id: "aws-appeng",
+    company: "Amazon Web Services",
+    role: "Application Engineer III",
+    duration: "Oct 2022 – Jul 2024",
+    location: "Chennai, India",
+    type: "Full-time",
+    logo: amazonLogo,
+    responsibilities: [
+      "Developed backend systems for large-scale evaluation and processing platforms supporting 80+ programming languages.",
+      "Built distributed workflows using AWS services (Lambda, DynamoDB, S3, Batch, ECR).",
+      "Designed systems for scalable and reliable data processing across distributed services.",
+      "Automated execution pipelines and improved system efficiency through workflow optimization.",
+      "Contributed to system monitoring, debugging, and performance improvements in production environments."
+    ]
+  },
+  {
+    id: "prodapt",
+    company: "Prodapt Solutions Pvt. Ltd.",
+    role: "Software Engineer",
+    duration: "Jun 2020 – Sep 2022",
+    location: "Chennai, India",
+    type: "Full-time",
+    logo: prodaptLogo,
+    responsibilities: [
+      "Developed backend and full-stack applications using Python (Flask), PHP, Angular, and SQL.",
+      "Built REST APIs and backend workflows for production systems.",
+      "Implemented automation scripts and improved application performance.",
+      "Supported production systems through debugging and issue resolution."
+    ]
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.6
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 100,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1
+  }
+};
 
 const ExperienceSection = () => {
-  const experiences = [
-    {
-      id: "aws",
-      company: "Amazon Web Services",
-      role: "Software Development Engineer",
-      duration: "2021 - Present",
-      location: "Seattle, WA",
-      type: "Full-time",
-      icon: Cloud,
-      color: "primary",
-      responsibilities: [
-        "Led development of Amazon Q Developer Assistant, improving developer productivity by 40%",
-        "Built scalable microservices handling 10M+ requests/day using Java, Spring Boot, and AWS Lambda",
-        "Designed and implemented real-time chat infrastructure using WebSocket and Redis",
-        "Optimized application performance resulting in 60% reduction in response time",
-        "Mentored junior developers and conducted technical interviews"
-      ],
-      achievements: [
-        "Delivered 3 major features ahead of schedule",
-        "Reduced system downtime by 85% through proactive monitoring",
-        "Led cross-functional team of 8 engineers"
-      ]
-    },
-    {
-      id: "startup",
-      company: "TechFlow Solutions",
-      role: "Full Stack Developer",
-      duration: "2020 - 2021",
-      location: "Bangalore, India",
-      type: "Full-time",
-      icon: Code,
-      color: "accent",
-      responsibilities: [
-        "Developed end-to-end web applications using React, Node.js, and MongoDB",
-        "Integrated third-party APIs and payment gateways (Stripe, PayPal)",
-        "Implemented CI/CD pipelines reducing deployment time by 70%",
-        "Created responsive UI components with modern design patterns",
-        "Collaborated with product teams to define technical requirements"
-      ],
-      achievements: [
-        "Built 5 production applications serving 50K+ users",
-        "Improved code coverage from 60% to 95%",
-        "Reduced bug reports by 40%"
-      ]
-    },
-    {
-      id: "intern",
-      company: "DataSync Technologies",
-      role: "Software Engineering Intern",
-      duration: "2019 - 2020",
-      location: "Chennai, India",
-      type: "Internship",
-      icon: Database,
-      color: "secondary",
-      responsibilities: [
-        "Developed database optimization scripts improving query performance by 35%",
-        "Created automated testing frameworks using Python and Selenium",
-        "Participated in code reviews and agile development processes",
-        "Built data visualization dashboards using D3.js and Chart.js"
-      ],
-      achievements: [
-        "Received 'Outstanding Intern' award",
-        "Contributed to open-source projects",
-        "Completed advanced certification in Cloud Computing"
-      ]
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 100,
-      scale: 0.9
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1
-    }
-  };
-
   return (
     <section id="experience" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%)] opacity-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent))_0%,transparent_50%)] opacity-10" />
-      
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           className="text-center mb-16"
@@ -129,9 +111,7 @@ const ExperienceSection = () => {
 
           <div className="space-y-12">
             {experiences.map((experience, index) => {
-              const Icon = experience.icon;
               const isEven = index % 2 === 0;
-
               return (
                 <motion.div
                   key={experience.id}
@@ -140,14 +120,18 @@ const ExperienceSection = () => {
                     isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                   } flex-col md:gap-8`}
                 >
-                  {/* Timeline Dot */}
+                  {/* Timeline Dot with Logo */}
                   <div className="absolute left-8 md:left-1/2 w-6 h-6 transform md:-translate-x-1/2 -translate-y-1/2 top-8 md:top-auto">
                     <motion.div 
-                      className={`w-full h-full rounded-full glass border-2 border-${experience.color} glow-${experience.color} flex items-center justify-center`}
+                      className="w-full h-full rounded-full glass border-2 border-primary flex items-center justify-center bg-white"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Icon size={12} className={`text-${experience.color}`} />
+                      <img
+                        src={experience.logo}
+                        alt={`${experience.company} logo`}
+                        className="w-6 h-6 object-contain"
+                      />
                     </motion.div>
                   </div>
 
@@ -164,18 +148,22 @@ const ExperienceSection = () => {
                       <div className="flex items-start justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <motion.div 
-                            className={`p-3 rounded-xl bg-${experience.color}/10 border border-${experience.color}/20`}
+                            className="p-3 rounded-xl bg-primary/10 border border-primary/20"
                             whileHover={{ rotate: 360 }}
                             transition={{ duration: 0.6 }}
                           >
-                            <Icon size={24} className={`text-${experience.color}`} />
+                            <img
+                              src={experience.logo}
+                              alt={`${experience.company} logo`}
+                              className="w-8 h-8 object-contain"
+                            />
                           </motion.div>
                           <div>
                             <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
-                            <p className={`text-${experience.color} font-semibold`}>{experience.role}</p>
+                            <p className="text-primary font-semibold">{experience.role}</p>
                           </div>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium bg-${experience.color}/10 text-${experience.color} border border-${experience.color}/20`}>
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                           {experience.type}
                         </span>
                       </div>
@@ -193,50 +181,21 @@ const ExperienceSection = () => {
                       </div>
 
                       {/* Responsibilities */}
-                      <div className="mb-6">
+                      <div>
                         <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                          <Building2 size={16} />
                           Key Responsibilities
                         </h4>
                         <ul className="space-y-2">
                           {experience.responsibilities.map((responsibility, idx) => (
-                            <motion.li
-                              key={idx}
-                              className="flex items-start gap-3 text-sm text-muted-foreground"
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: idx * 0.1 }}
-                            >
-                              <ArrowRight size={14} className={`text-${experience.color} mt-1 flex-shrink-0`} />
+                            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
+                              <span className="mt-1 text-primary">•</span>
                               <span>{responsibility}</span>
-                            </motion.li>
+                            </li>
                           ))}
                         </ul>
                       </div>
-
-                      {/* Achievements */}
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                          <Users size={16} />
-                          Key Achievements
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          {experience.achievements.map((achievement, idx) => (
-                            <motion.div
-                              key={idx}
-                              className={`p-3 rounded-lg bg-${experience.color}/5 border border-${experience.color}/10`}
-                              whileHover={{ scale: 1.05 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <span className="text-sm text-foreground font-medium">{achievement}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   </motion.div>
-
                   {/* Spacer for desktop layout */}
                   <div className="hidden md:block w-5/12" />
                 </motion.div>

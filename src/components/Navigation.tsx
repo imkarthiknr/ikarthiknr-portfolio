@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Briefcase, Code, Mail, FileText, GraduationCap } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, Code, Mail, FileText, GraduationCap, Award } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,7 @@ const Navigation = () => {
     { id: 'experience', label: 'Experience', icon: Briefcase },
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Code },
+    { id: 'certifications', label: 'Certifications', icon: Award },
     { id: 'projects', label: 'Projects', icon: FileText },
     { id: 'contact', label: 'Contact', icon: Mail }
   ];
@@ -54,20 +55,20 @@ const Navigation = () => {
     <>
       {/* Desktop Navigation */}
       <motion.nav 
-        className="fixed top-8 left-1/4 transform -translate-x-1/2 z-50 hidden md:block"
+        className="fixed top-8 left-0 right-0 mx-auto w-fit z-50 hidden md:block"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="glass rounded-full px-6 py-3 shadow-2xl">
-          <div className="flex items-center space-x-6">
+        <div className="glass rounded-full px-4 py-2.5 shadow-2xl">
+          <div className="flex items-center space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`relative flex items-center space-x-1.5 px-3 py-2 rounded-full transition-all duration-300 ${
                     activeSection === item.id
                       ? 'bg-primary text-primary-foreground glow-purple'
                       : 'text-muted-foreground hover:text-foreground hover:glow-cyan'

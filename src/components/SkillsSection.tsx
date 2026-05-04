@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Center } from '@react-three/drei';
+import { OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 // 3D Skill Orb Component - Simple glowing sphere
@@ -29,98 +29,136 @@ const SkillOrb = ({ position, color }: {
   );
 };
 
+const frontendSkills = [
+  { name: 'JavaScript', color: '#F7DF1E' },
+  { name: 'React', color: '#61DAFB' },
+];
+
+const backendSkills = [
+  { name: 'Python', color: '#3776AB' },
+  { name: 'Java', color: '#007396' },
+  { name: 'Node.js', color: '#339933' },
+  { name: 'Distributed Systems', color: '#6366F1' },
+  { name: 'System Reliability', color: '#0EA5E9' },
+  { name: 'Fault Tolerance', color: '#F59E42' },
+  { name: 'High Availability', color: '#10B981' },
+];
+
+const devopsSkills = [
+  { name: 'AWS (Lambda, S3, Batch, DynamoDB, SQS, ECR, CDK)', color: '#FF9900' },
+  { name: 'Docker', color: '#2496ED' },
+  { name: 'Jenkins', color: '#D24939' },
+  { name: 'CI/CD', color: '#6366F1' },
+  { name: 'Workflow Orchestration', color: '#6366F1' },
+];
+
+const observabilitySkills = [
+  { name: 'Monitoring', color: '#6366F1' },
+  { name: 'Logging', color: '#6366F1' },
+  { name: 'Metrics', color: '#6366F1' },
+  { name: 'Debugging (Splunk)', color: '#00A651' },
+  { name: 'Performance Optimization', color: '#F59E42' },
+];
+
+const skillCategories = [
+  { title: 'Frontend', skills: frontendSkills, gradient: 'from-blue-500 to-cyan-500' },
+  { title: 'Backend', skills: backendSkills, gradient: 'from-green-500 to-emerald-500' },
+  { title: 'DevOps & Cloud', skills: devopsSkills, gradient: 'from-yellow-500 to-orange-500' },
+  { title: 'Observability & Automation', skills: observabilitySkills, gradient: 'from-purple-500 to-pink-500' }
+];
+
+const orbSkills = [
+  { position: [0, 0, 0] as [number, number, number], color: '#a855f7' },
+  { position: [3, 1, -1] as [number, number, number], color: '#06b6d4' },
+  { position: [-2, -1, 1] as [number, number, number], color: '#8b5cf6' },
+  { position: [1, -2, 2] as [number, number, number], color: '#06b6d4' },
+  { position: [-3, 1, -2] as [number, number, number], color: '#a855f7' },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
+
+const SkillBar = ({ skill, delay = 0 }: { skill: any; delay?: number }) => (
+  <motion.div
+    className="space-y-2"
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay, duration: 0.6 }}
+  >
+    <div className="flex justify-between items-center">
+      <span className="text-foreground font-medium">{skill.name}</span>
+    </div>
+    <div className="h-3 bg-muted rounded-full overflow-hidden">
+      <motion.div
+        className="h-full rounded-full"
+        style={{ backgroundColor: skill.color }}
+        initial={{ width: 0 }}
+        animate={{ width: '100%' }}
+        transition={{ delay: delay + 0.2, duration: 1 }}
+      />
+    </div>
+  </motion.div>
+);
+
 const SkillsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const frontendSkills = [
-    { name: 'React', level: 95, color: '#61DAFB' },
-    { name: 'TypeScript', level: 90, color: '#3178C6' },
-    { name: 'Next.js', level: 88, color: '#000000' },
-    { name: 'Vue.js', level: 85, color: '#4FC08D' },
-    { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
-    { name: 'Framer Motion', level: 87, color: '#FF0055' },
-  ];
+  // Dynamic repo count state
+  const [repoCount, setRepoCount] = useState<number | null>(null);
+  // Dynamic years of experience state
+  const [yearsExp, setYearsExp] = useState<string>('...');
+  // Dynamic technologies worked count
+  const [techCount, setTechCount] = useState<number>(0);
 
-  const backendSkills = [
-    { name: 'Node.js', level: 92, color: '#339933' },
-    { name: 'Python', level: 88, color: '#3776AB' },
-    { name: 'GraphQL', level: 85, color: '#E10098' },
-    { name: 'PostgreSQL', level: 90, color: '#4169E1' },
-    { name: 'MongoDB', level: 87, color: '#47A248' },
-    { name: 'Redis', level: 82, color: '#DC382D' },
-  ];
 
-  const toolsSkills = [
-    { name: 'Three.js', level: 89, color: '#000000' },
-    { name: 'WebGL', level: 85, color: '#990000' },
-    { name: 'Docker', level: 88, color: '#2496ED' },
-    { name: 'AWS', level: 86, color: '#FF9900' },
-    { name: 'Git', level: 95, color: '#F05032' },
-    { name: 'Figma', level: 83, color: '#F24E1E' },
-  ];
+  useEffect(() => {
+    fetch('https://api.github.com/users/imkarthiknr/repos?per_page=100')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          // Only count public repos (not forks)
+          const publicRepos = data.filter((repo: any) => !repo.fork);
+          setRepoCount(publicRepos.length);
+        }
+      })
+      .catch(() => setRepoCount(null));
 
-  const cloudDevOpsSkills = [
-    { name: 'Kubernetes', level: 80, color: '#326CE5' },
-    { name: 'Terraform', level: 78, color: '#623CE4'}
-  ];
-
-  const skillCategories = [
-    { title: 'Frontend', skills: frontendSkills, gradient: 'from-blue-500 to-cyan-500' },
-    { title: 'Backend', skills: backendSkills, gradient: 'from-green-500 to-emerald-500' },
-    { title: 'Tools', skills: toolsSkills, gradient: 'from-purple-500 to-pink-500' },
-    { title: 'Cloud & DevOps', skills: cloudDevOpsSkills, gradient: 'from-yellow-500 to-orange-500' }
-  ];
-
-  const orbSkills = [
-    { position: [0, 0, 0] as [number, number, number], color: '#a855f7' },
-    { position: [3, 1, -1] as [number, number, number], color: '#06b6d4' },
-    { position: [-2, -1, 1] as [number, number, number], color: '#8b5cf6' },
-    { position: [1, -2, 2] as [number, number, number], color: '#06b6d4' },
-    { position: [-3, 1, -2] as [number, number, number], color: '#a855f7' },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
+      // Calculate years of experience from June 1, 2020
+    const startDate = new Date(2020, 5, 1); // Month is 0-indexed: 5 = June
+    const now = new Date();
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    if (months < 0) {
+      years--;
+      months += 12;
     }
-  };
+    // Show as "X.Y+" (e.g., 3.9+)
+    const yearsDisplay = months > 0 ? `${years}.${months}+` : `${years}+`;
+    setYearsExp(yearsDisplay);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  const SkillBar = ({ skill, delay = 0 }: { skill: any; delay?: number }) => (
-    <motion.div
-      className="space-y-2"
-      initial={{ opacity: 0, x: -20 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay, duration: 0.6 }}
-    >
-      <div className="flex justify-between items-center">
-        <span className="text-foreground font-medium">{skill.name}</span>
-      </div>
-      <div className="h-3 bg-muted rounded-full overflow-hidden">
-        <motion.div
-          className="h-full rounded-full"
-          style={{ backgroundColor: skill.color }}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${skill.level}%` } : {}}
-          transition={{ delay: delay + 0.2, duration: 1 }}
-        />
-      </div>
-    </motion.div>
-  );
+    // Count unique technologies from all skill categories
+    const allSkills = skillCategories.flatMap(cat => cat.skills.map(skill => skill.name));
+    const uniqueSkills = Array.from(new Set(allSkills));
+    setTechCount(uniqueSkills.length);
+  }, []);
 
   return (
     <section id="skills" className="min-h-screen py-20 relative">
@@ -130,7 +168,6 @@ const SkillsSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
@@ -144,44 +181,16 @@ const SkillsSection = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column - 3D Skills Visualization */}
-            {/* <motion.div variants={itemVariants} className="relative">
-              <div className="h-96 md:h-[500px] relative">
-                <Canvas
-                  camera={{ position: [0, 0, 8], fov: 45 }}
-                  gl={{ alpha: true, antialias: true }}
-                >
-                  <ambientLight intensity={0.5} />
-                  <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
-                  <pointLight position={[-10, -10, -10]} intensity={0.5} color="#06b6d4" />
-                  
-                  {orbSkills.map((orb, index) => (
-                    <SkillOrb
-                      key={index}
-                      position={orb.position}
-                      color={orb.color}
-                    />
-                  ))}
-                  
-                  <OrbitControls 
-                    enableZoom={false} 
-                    enablePan={false} 
-                    autoRotate 
-                    autoRotateSpeed={1}
-                  />
-                </Canvas>
-              </div>
-              <div className="absolute -top-10 -left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-pulse-glow" />
-              <div className="absolute -bottom-10 -right-10 w-16 h-16 bg-accent/20 rounded-full blur-xl animate-pulse-glow" />
-            </motion.div> */}
-
-            {/* Right Column - Skill Categories */}
-            <motion.div variants={itemVariants} className="flex flex-row gap-8">
+          <div className="w-full">
+            {/* Skill Categories Grid */}
+            <motion.div 
+              variants={itemVariants} 
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full"
+            >
               {skillCategories.map((category, categoryIndex) => (
                 <motion.div
                   key={category.title}
-                  className="glass p-6 rounded-2xl flex-1 min-w-[220px]"
+                  className="glass p-6 rounded-2xl"
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.02,
@@ -192,7 +201,6 @@ const SkillsSection = () => {
                     <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${category.gradient} mr-3`} />
                     <h3 className="text-xl font-bold text-foreground">{category.title}</h3>
                   </div>
-                  
                   <div className="space-y-4">
                     {category.skills.map((skill, skillIndex) => (
                       <SkillBar 
@@ -212,11 +220,11 @@ const SkillsSection = () => {
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16"
           >
-            {[
-              { number: '50+', label: 'Projects Completed' },
-              { number: '5+', label: 'Years Experience' },
-              { number: '20+', label: 'Technologies Mastered' },
-              { number: '100%', label: 'Client Satisfaction' },
+            {[ 
+              { number: repoCount !== null ? `${repoCount}+` : '...', label: 'Stand-alone Projects' },
+              { number: yearsExp, label: 'Years Experience' },
+              { number: `${techCount}+`, label: 'Technologies Worked' },
+              { number: '3', label: 'Certifications Earned' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
