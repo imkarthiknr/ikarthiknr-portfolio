@@ -20,14 +20,22 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => item.id);
-      const currentSection = sections.find(section => {
+
+      // If within 50px of the bottom, always activate the last section
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 50) {
+        setActiveSection(sections[sections.length - 1]);
+        return;
+      }
+
+      // Reverse so the last section whose top has passed the threshold wins
+      const currentSection = [...sections].reverse().find(section => {
         const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          return element.getBoundingClientRect().top <= 100;
         }
         return false;
       });
+
       if (currentSection) setActiveSection(currentSection);
     };
 
@@ -36,17 +44,13 @@ const Navigation = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      // Add offset for fixed navigation
       const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
     setIsOpen(false);
   };
