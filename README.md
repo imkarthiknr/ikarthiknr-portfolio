@@ -1,73 +1,93 @@
-# Welcome to your Lovable project
+# Karthik NR — Portfolio
 
-## Project info
+Personal portfolio website for **Karthik NR**, System Development Engineer at Amazon and AI Enthusiast. Built with a modern React stack, 3D animations, and deployed on Firebase Hosting.
 
-**URL**: https://lovable.dev/projects/45bae598-d383-49f5-b317-e4c7ec4da55c
+**Live:** [ikarthiknr-portfolio.web.app](https://ikarthiknr-portfolio.web.app)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Sections
 
-**Use Lovable**
+| Section | Description |
+|---|---|
+| Hero | Intro, role, CTA buttons, and social links |
+| About | Summary, background, and core expertise areas |
+| Experience | Work history at Amazon, AWS, and Prodapt |
+| Education | M.Tech at BITS Pilani, B.E. at Sri Sairam Engineering College |
+| Skills | Frontend, backend, cloud, DevOps, and observability skills |
+| Certifications | AWS, IBM, Coursera, and freeCodeCamp certifications |
+| Projects | Featured projects — currently NotesPro |
+| Contact | Contact form (Firestore + Firebase Trigger Email) and social links |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/45bae598-d383-49f5-b317-e4c7ec4da55c) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Tech Stack
 
-**Use your preferred IDE**
+**Core**
+- React 18 + TypeScript
+- Vite 5
+- Tailwind CSS + shadcn/ui (Radix UI)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Animations & 3D**
+- Framer Motion
+- Three.js + React Three Fiber
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Backend & Database**
+- Firebase Firestore — contact form submissions
+- Firebase Hosting — deployment
+- Firebase Trigger Email extension — email notifications on new contact
 
-Follow these steps:
+**Forms**
+- React Hook Form + Zod
+
+---
+
+## Getting Started
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone
+git clone https://github.com/imkarthiknr/ikarthiknr-portfolio.git
+cd prism-pulse-port
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+App runs at `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+# Build
+npm run build
 
-## What technologies are used for this project?
+# Deploy to Firebase Hosting
+firebase deploy
+```
 
-This project is built with:
+Firebase serves the `dist/` folder. Always run `npm run build` before `firebase deploy` to include latest changes.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Contact Form Setup
 
-Simply open [Lovable](https://lovable.dev/projects/45bae598-d383-49f5-b317-e4c7ec4da55c) and click on Share -> Publish.
+The contact form saves submissions to Firestore (`contacts` collection) and triggers an email via the [Firebase Trigger Email extension](https://extensions.dev/extensions/firebase/firestore-send-email).
 
-## Can I connect a custom domain to my Lovable project?
+**Requirements:**
+- Firebase project on Blaze plan
+- Firebase Trigger Email extension installed (Cloud Functions location: `us-central1`)
+- Gmail App Password configured as the SMTP credential
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Connect
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- GitHub: [imkarthiknr](https://github.com/imkarthiknr)
+- LinkedIn: [ikarthiknr](https://www.linkedin.com/in/ikarthiknr/)
+- X: [@ikarthiknr](https://x.com/ikarthiknr)
+- Medium: [@ikarthiknr](https://medium.com/@ikarthiknr)
