@@ -105,7 +105,7 @@ const HeroSection = () => {
                 </motion.div>
               </Button>
               <a
-                href="https://drive.google.com/uc?export=download&id=1pwbYSQkTANetiKjbF54r32DXtKFKhtF6"
+                href="https://docs.google.com/document/d/1gHh229TxQIq_3xwAEEwv08z-souR46bp/export?format=pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
