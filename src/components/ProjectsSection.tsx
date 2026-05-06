@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Play, Zap, Moon, Type, Download, Terminal, Wifi, LucideIcon } from 'lucide-react';
+import { ExternalLink, Play, Zap, Moon, Type, Download, Terminal, Wifi, BarChart2, MapPin, Link2, QrCode, Clock, Key, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const GithubIcon = ({ size = 16 }: { size?: number }) => (
@@ -50,6 +50,26 @@ const projects: Project[] = [
       { icon: Wifi,     label: "Offline-first",       desc: "Works locally with zero external deps" },
     ],
   },
+  {
+    id: 2,
+    title: "SnipLink",
+    tagline: "Open-source URL shortener with real analytics — no login required.",
+    description:
+      "A self-hostable, API-first URL shortener with a full analytics dashboard. Track clicks, visualize geo heatmaps, trace referrers, set expiry rules, and generate QR codes — all without needing an account for basic use.",
+    tags: ["React", "TypeScript", "Firebase", "Cloud Functions", "Firestore", "Tailwind CSS"],
+    github: "https://github.com/imkarthiknr/SnipLink",
+    demo: "https://sniplink-e2eed.web.app",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop",
+    featured: true,
+    features: [
+      { icon: BarChart2, label: "Click Analytics",    desc: "Real-time dashboard with click tracking" },
+      { icon: MapPin,    label: "Geo Heatmaps",       desc: "Visualise traffic by country and region" },
+      { icon: Link2,     label: "Custom Slugs",       desc: "Personalised short URLs for registered users" },
+      { icon: Clock,     label: "Expiry Rules",       desc: "Expire by days, click count, or exact date" },
+      { icon: QrCode,    label: "QR Codes",           desc: "Auto-generated, downloadable as PNG" },
+      { icon: Key,       label: "Public REST API",    desc: "API-key authenticated, self-hostable" },
+    ],
+  },
   // Add more projects below — featured cards span full width, regular cards tile in a grid
 ];
 // ─────────────────────────────────────────────────────────────────────────────
@@ -62,12 +82,12 @@ const cardVariants = {
 const FeaturedCard = ({ project }: { project: Project }) => (
   <motion.div
     variants={cardVariants}
-    className="group relative overflow-hidden rounded-3xl glass col-span-full"
+    className="group relative overflow-hidden rounded-3xl glass"
     whileHover={{ scale: 1.01 }}
     transition={{ duration: 0.3 }}
   >
     {/* Hero Image */}
-    <div className="relative overflow-hidden h-72 md:h-96">
+    <div className="relative overflow-hidden h-56">
       <img
         src={project.image}
         alt={project.title}
@@ -98,14 +118,14 @@ const FeaturedCard = ({ project }: { project: Project }) => (
     </div>
 
     {/* Body */}
-    <div className="p-8 md:p-10">
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-        <div className="flex-1">
-          <h3 className="text-3xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+    <div className="p-6">
+      <div className="flex flex-col gap-4">
+        <div>
+          <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
             {project.title}
           </h3>
-          <p className="text-accent font-medium mb-4">{project.tagline}</p>
-          <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
+          <p className="text-accent text-sm font-medium mb-3">{project.tagline}</p>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span key={tag} className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary border border-primary/20 rounded-full">
@@ -115,13 +135,13 @@ const FeaturedCard = ({ project }: { project: Project }) => (
           </div>
         </div>
 
-        <div className="flex flex-row md:flex-col gap-3 shrink-0">
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground glow-purple hover:glow-intense transition-all duration-300" asChild>
+        <div className="flex flex-row gap-3">
+          <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground glow-purple hover:glow-intense transition-all duration-300" asChild>
             <a href={project.demo} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="w-4 h-4 mr-2" />View Live
             </a>
           </Button>
-          <Button variant="outline" className="glass border-border hover:border-primary transition-all duration-300" asChild>
+          <Button variant="outline" className="flex-1 glass border-border hover:border-primary transition-all duration-300" asChild>
             <a href={project.github} target="_blank" rel="noopener noreferrer">
               <GithubIcon size={16} /><span className="ml-2">GitHub</span>
             </a>
@@ -130,7 +150,7 @@ const FeaturedCard = ({ project }: { project: Project }) => (
       </div>
 
       {project.features && project.features.length > 0 && (
-        <div className="mt-8 pt-8 border-t border-border grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="mt-6 pt-6 border-t border-border grid grid-cols-2 gap-3">
           {project.features.map(({ icon: Icon, label, desc }) => (
             <div key={label} className="flex items-start space-x-3 group/feat">
               <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover/feat:bg-primary/20 transition-colors">
@@ -242,11 +262,19 @@ const ProjectsSection = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
           </motion.div>
 
-          {/* Grid — featured cards span full width, regular cards tile in columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featured.map((p) => <FeaturedCard key={p.id} project={p} />)}
-            {regular.map((p)  => <RegularCard  key={p.id} project={p} />)}
-          </div>
+          {/* Featured projects — 2 columns side by side on large screens */}
+          {featured.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {featured.map((p) => <FeaturedCard key={p.id} project={p} />)}
+            </div>
+          )}
+
+          {/* Regular projects — 3-column grid */}
+          {regular.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regular.map((p) => <RegularCard key={p.id} project={p} />)}
+            </div>
+          )}
         </motion.div>
       </div>
 
