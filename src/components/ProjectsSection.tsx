@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Play, Zap, Moon, Type, Download, Terminal, Wifi, BarChart2, MapPin, Link2, QrCode, Clock, Key, LucideIcon } from 'lucide-react';
+import { ExternalLink, Play, Zap, Moon, Type, Download, Terminal, Wifi, BarChart2, MapPin, Link2, QrCode, Clock, Key, MessageSquare, Map, BrainCircuit, Building2, Navigation, Database, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const GithubIcon = ({ size = 16 }: { size?: number }) => (
@@ -68,6 +68,26 @@ const projects: Project[] = [
       { icon: Clock,     label: "Expiry Rules",       desc: "Expire by days, click count, or exact date" },
       { icon: QrCode,    label: "QR Codes",           desc: "Auto-generated, downloadable as PNG" },
       { icon: Key,       label: "Public REST API",    desc: "API-key authenticated, self-hostable" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Nestiq",
+    tagline: "AI-powered neighborhood finder — describe your vibe, find where you belong.",
+    description:
+      "A conversational AI chatbot that helps you find accommodation in India. Describe your lifestyle, budget, commute, and preferences in natural language — Nestiq extracts your needs, queries real listings via Google Maps Places API, and pins them on an interactive map with photos, ratings, and navigation links.",
+    tags: ["React", "TypeScript", "Python", "FastAPI", "Claude AI", "Google Maps API", "Firestore", "Cloud Run"],
+    github: "https://github.com/imkarthiknr/Nestiq",
+    demo: "https://nestiq-5a012.web.app/",
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&h=600&fit=crop",
+    featured: true,
+    features: [
+      { icon: MessageSquare, label: "Chat Interface",    desc: "Natural language input to express housing needs" },
+      { icon: BrainCircuit,  label: "Claude AI",        desc: "claude-sonnet-4-6 with SSE streaming for real-time responses" },
+      { icon: Map,           label: "Interactive Map",  desc: "Property pins via Google Maps Places API" },
+      { icon: Building2,     label: "Real Listings",    desc: "Live property cards with photos, ratings & addresses" },
+      { icon: Navigation,    label: "Navigation Links", desc: "One-click directions to any listed property" },
+      { icon: Database,      label: "Firestore + Cloud Run", desc: "Scalable backend deployed on Firebase & GCP" },
     ],
   },
   // Add more projects below — featured cards span full width, regular cards tile in a grid
