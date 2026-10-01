@@ -77,7 +77,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.1 }}
             >
-              a System Development Engineer at Amazon with 4+ years of experience building scalable backend systems and developer tools. 
+              a System Development Engineer II at Amazon with 6+ years of experience building scalable backend systems and developer tools. 
               Specialized in Cloud and Generative AI Areas, and have contributed to projects like Amazon Q and CodeWhisperer. 
               Outside of work, I explore competitive programming, write tech blogs, and share travel stories.
               {/*I'm currently seeking impactful engineering roles at top tech companies where I can solve complex problems and grow with high-performing teams*/}

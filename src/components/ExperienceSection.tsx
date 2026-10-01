@@ -7,7 +7,8 @@ const experiences = [
   {
     id: "amazon-sde",
     company: "Amazon Inc.",
-    role: "System Development Engineer I",
+    role: "System Development Engineer II",
+    promotion: "Promoted from System Development Engineer I · Jul 2026",
     duration: "Aug 2024 - Present",
     location: "Chennai, India",
     type: "Full-time",
@@ -161,6 +162,9 @@ const ExperienceSection = () => {
                           <div>
                             <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
                             <p className="text-primary font-semibold">{experience.role}</p>
+                            {experience.promotion && (
+                              <p className="text-xs text-muted-foreground mt-1">{experience.promotion}</p>
+                            )}
                           </div>
                         </div>
                         <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">

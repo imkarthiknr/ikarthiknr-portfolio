@@ -76,11 +76,11 @@ const AboutSection = () => {
                   variants={itemVariants}
                 >
                   I'm a passionate <span className="text-accent font-semibold">software developer</span> with 
-                  4+ years of experience building scalable systems and solving complex problems with cutting-edge technology.
+                  6+ years of experience building scalable systems and solving complex problems with cutting-edge technology.
                 </motion.p>
                 
                 <motion.p variants={itemVariants}>
-                  Currently, I work as a <span className="text-primary font-semibold">System Development Engineer</span>, 
+                  Currently, I work as a <span className="text-primary font-semibold">System Development Engineer II</span> at Amazon, 
                   Where I design and develop optimized frameworks & backend services that power high-impact applications.
                   My technical toolkit includes Python, React, AWS & Docker, among others. 
                 </motion.p>

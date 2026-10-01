@@ -1,6 +1,6 @@
 # Karthik NR — Portfolio
 
-Personal portfolio website for **Karthik NR**, System Development Engineer at Amazon and AI Enthusiast. Built with a modern React stack, 3D animations, and deployed on Firebase Hosting.
+Personal portfolio website for **Karthik NR**, System Development Engineer II at Amazon and AI Enthusiast. Built with a modern React stack, 3D animations, and deployed on Firebase Hosting.
 
 **Live:** [ikarthiknr-portfolio.web.app](https://ikarthiknr-portfolio.web.app)
 
