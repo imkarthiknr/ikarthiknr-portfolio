@@ -2,56 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Portfolio Design System - Dark theme with gradients and animations */
-
+/* Design tokens — light is the base, .dark overrides. Values are HSL channels. */
 @layer base {
   :root {
-    /* Dark Portfolio Theme */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --primary: 248 78% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Primary - Electric Purple */
-    --primary: 270 91% 65%;
-    --primary-foreground: 0 0% 98%;
-    
-    /* Secondary - Deep Purple */
-    --secondary: 240 100% 8%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
 
-    /* Muted - Dark with slight purple */
-    --muted: 240 6% 10%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 40%;
 
-    /* Accent - Cyan */
-    --accent: 184 100% 60%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 240 5% 95%;
+    --accent-foreground: 240 6% 10%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 6% 20%;
-    --input: 240 6% 20%;
-    --ring: 270 91% 65%;
+    --success: 152 60% 38%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 88%;
+    --ring: 248 78% 58%;
 
     --radius: 0.75rem;
 
-    /* Custom Portfolio Colors */
-    --hero-gradient: linear-gradient(135deg, hsl(270, 91%, 65%) 0%, hsl(240, 100%, 70%) 50%, hsl(184, 100%, 60%) 100%);
-    --glass-bg: hsla(240, 10%, 15%, 0.8);
-    --glass-border: hsla(270, 91%, 65%, 0.2);
-    --glow-purple: hsla(270, 91%, 65%, 0.4);
-    --glow-cyan: hsla(184, 100%, 60%, 0.4);
-    
-    /* Shadows */
-    --shadow-glow: 0 0 50px hsl(270 91% 65% / 0.3);
-    --shadow-card: 0 8px 32px hsl(240 10% 3.9% / 0.5);
-    --shadow-intense: 0 0 100px hsl(270 91% 65% / 0.6);
+    /* GitHub heatmap scale (built from primary) */
+    --heat-0: 240 5% 93%;
+  }
+
+  .dark {
+    --background: 240 8% 4%;
+    --foreground: 0 0% 96%;
+
+    --card: 240 6% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 248 90% 72%;
+    --primary-foreground: 240 10% 6%;
+
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 5% 13%;
+    --accent-foreground: 0 0% 96%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 152 55% 52%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 18%;
+    --ring: 248 90% 72%;
+
+    --heat-0: 240 5% 13%;
   }
 }
 
@@ -60,105 +79,69 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground overflow-x-hidden font-inter;
-    background: radial-gradient(ellipse at top, hsl(240 100% 8%) 0%, hsl(240 10% 3.9%) 50%);
-    min-height: 100vh;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: hidden;
   }
-  
-  ::-webkit-scrollbar-track {
-    background: hsl(240 10% 3.9%);
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
   }
-  
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, hsl(270 91% 65%), hsl(184 100% 60%));
-    border-radius: 4px;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
-  /* Glass morphism effect */
-  .glass {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  .section {
+    @apply relative py-20 md:py-28;
   }
 
-  /* Gradient text */
-  .gradient-text {
-    background: var(--hero-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  /* Glow effects */
-  .glow-purple {
-    box-shadow: 0 0 20px var(--glow-purple);
-  }
-  
-  .glow-cyan {
-    box-shadow: 0 0 20px var(--glow-cyan);
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-primary;
   }
 
-  .glow-intense {
-    box-shadow: var(--shadow-intense);
+  .surface {
+    @apply rounded-2xl border bg-card text-card-foreground;
   }
 
-  /* Animated gradient border */
-  .gradient-border {
-    position: relative;
-    background: var(--glass-bg);
-    border-radius: var(--radius);
-  }
-  
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    background: var(--hero-gradient);
-    border-radius: inherit;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: exclude;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+  .surface-hover {
+    @apply transition-[border-color,box-shadow,transform] duration-300 hover:border-foreground/20 hover:shadow-[0_8px_30px_-12px_hsl(var(--foreground)/0.18)];
   }
 
-  /* Floating animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+  .chip {
+    @apply inline-flex items-center rounded-full border bg-secondary/60 px-2.5 py-0.5 text-xs font-medium text-secondary-foreground;
   }
 
-  /* Pulse glow animation */
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
-  }
-  
-  @keyframes pulse-glow {
-    from { box-shadow: 0 0 20px var(--glow-purple); }
-    to { box-shadow: 0 0 40px var(--glow-purple), 0 0 60px var(--glow-cyan); }
+  .link-underline {
+    @apply underline decoration-foreground/20 underline-offset-4 transition-colors hover:decoration-primary;
   }
 
-  /* Particle container */
-  .particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
+  /* Faint grid used behind the hero, faded out at the edges */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--foreground) / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }

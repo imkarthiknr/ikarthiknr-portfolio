@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics } from 'firebase/analytics';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 
+// Firebase web config is public by design — access is controlled by Firestore security rules.
 const firebaseConfig = {
   apiKey: "AIzaSyBRzouslRMo2W1ZpRqK4Vxdg97nUqC-dm4",
   authDomain: "ikarthiknr-portfolio.firebaseapp.com",
@@ -14,4 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const analytics = getAnalytics(app);
+
+isSupported()
+  .then((ok) => ok && getAnalytics(app))
+  .catch(() => {});

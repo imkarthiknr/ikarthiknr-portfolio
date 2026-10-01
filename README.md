@@ -1,6 +1,6 @@
 # Karthik NR — Portfolio
 
-Personal portfolio website for **Karthik NR**, System Development Engineer at Amazon and AI Enthusiast. Built with a modern React stack, 3D animations, and deployed on Firebase Hosting.
+Personal portfolio website for **Karthik NR**, System Development Engineer at Amazon and AI Enthusiast. Built with React, TypeScript and Tailwind, and deployed on Firebase Hosting.
 
 **Live:** [ikarthiknr-portfolio.web.app](https://ikarthiknr-portfolio.web.app)
 
@@ -10,35 +10,43 @@ Personal portfolio website for **Karthik NR**, System Development Engineer at Am
 
 | Section | Description |
 |---|---|
-| Hero | Intro, role, CTA buttons, and social links |
-| About | Summary, background, and core expertise areas |
-| Experience | Work history at Amazon, AWS, and Prodapt |
-| Education | M.Tech at BITS Pilani, B.E. at Sri Sairam Engineering College |
-| Skills | Frontend, backend, cloud, DevOps, and observability skills |
-| Certifications | AWS, IBM, Coursera, and freeCodeCamp certifications |
-| Projects | Featured projects — currently NotesPro |
-| Contact | Contact form (Firestore + Firebase Trigger Email) and social links |
+| Hero | Intro, CTAs, socials, latest certification and live stats |
+| About | Summary and focus areas |
+| Experience | Timeline of Amazon, AWS and Prodapt roles |
+| Projects | Featured projects + a full filterable [`/projects`](https://ikarthiknr-portfolio.web.app/projects) page |
+| Skills | Grouped toolkit |
+| GitHub | Live contribution heatmap, language breakdown and recently pushed repos |
+| Writing | Articles pulled live from DEV.to and Medium |
+| Credentials | Certifications and education |
+| Contact | Contact form (Firestore + Firebase Trigger Email) and links |
+
+**Features:** light/dark theme (follows the OS by default), ⌘K / Ctrl+K command palette, shareable project filters (`/projects?category=AI&tech=Python`), reduced-motion support.
+
+---
+
+## Updating content
+
+All content lives in `src/data/` — no UI code changes needed:
+
+| File | What it holds |
+|---|---|
+| `profile.ts` | Name, role, email, résumé link, social links |
+| `experience.ts` | Work history |
+| `projects.ts` | Curated projects (set `featured: true` to show on the home page) |
+| `skills.ts` | Skill groups |
+| `credentials.ts` | Certifications (newest first) and education |
+
+GitHub stats, repos and articles are fetched at runtime (cached for 30 minutes in `localStorage`).
 
 ---
 
 ## Tech Stack
 
-**Core**
-- React 18 + TypeScript
-- Vite 5
-- Tailwind CSS + shadcn/ui (Radix UI)
-
-**Animations & 3D**
+- React 18 + TypeScript, Vite 5
+- Tailwind CSS + shadcn/ui (Radix UI), `next-themes`, `cmdk`
 - Framer Motion
-- Three.js + React Three Fiber
-
-**Backend & Database**
-- Firebase Firestore — contact form submissions
-- Firebase Hosting — deployment
-- Firebase Trigger Email extension — email notifications on new contact
-
-**Forms**
-- React Hook Form + Zod
+- TanStack Query for GitHub / DEV.to / Medium data
+- Firebase Firestore + Trigger Email (contact form), Firebase Hosting
 
 ---
 
@@ -56,7 +64,7 @@ npm install
 npm run dev
 ```
 
-App runs at `http://localhost:5173`.
+App runs at `http://localhost:8080`.
 
 ---
 
@@ -91,3 +99,4 @@ The contact form saves submissions to Firestore (`contacts` collection) and trig
 - LinkedIn: [ikarthiknr](https://www.linkedin.com/in/ikarthiknr/)
 - X: [@ikarthiknr](https://x.com/ikarthiknr)
 - Medium: [@ikarthiknr](https://medium.com/@ikarthiknr)
+- DEV: [ikarthiknr](https://dev.to/ikarthiknr)
