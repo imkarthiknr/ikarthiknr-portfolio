@@ -5,11 +5,20 @@ import prodaptLogo from '@/assets/prodapt.png';
 
 const experiences = [
   {
-    id: "amazon-sde",
+    id: "amazon-sde2",
     company: "Amazon Inc.",
     role: "System Development Engineer II",
-    promotion: "Promoted from System Development Engineer I · Jul 2026",
-    duration: "Aug 2024 - Present",
+    duration: "Jul 2026 - Present",
+    location: "Chennai, India",
+    type: "Full-time",
+    logo: amazonLogo,
+    responsibilities: []
+  },
+  {
+    id: "amazon-sde",
+    company: "Amazon Inc.",
+    role: "System Development Engineer I",
+    duration: "Aug 2024 – Jun 2026",
     location: "Chennai, India",
     type: "Full-time",
     logo: amazonLogo,
@@ -162,9 +171,6 @@ const ExperienceSection = () => {
                           <div>
                             <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
                             <p className="text-primary font-semibold">{experience.role}</p>
-                            {experience.promotion && (
-                              <p className="text-xs text-muted-foreground mt-1">{experience.promotion}</p>
-                            )}
                           </div>
                         </div>
                         <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
@@ -185,6 +191,7 @@ const ExperienceSection = () => {
                       </div>
 
                       {/* Responsibilities */}
+                      {experience.responsibilities.length > 0 && (
                       <div>
                         <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                           Key Responsibilities
@@ -198,6 +205,7 @@ const ExperienceSection = () => {
                           ))}
                         </ul>
                       </div>
+                      )}
                     </div>
                   </motion.div>
                   {/* Spacer for desktop layout */}
