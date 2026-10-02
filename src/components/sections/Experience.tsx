@@ -49,8 +49,9 @@ const ExperienceCard = ({ item, current }: { item: ExperienceItem; current: bool
           </div>
         </div>
 
-        <p className="mt-4 text-[15px] leading-relaxed">{item.summary}</p>
+        {item.summary && <p className="mt-4 text-[15px] leading-relaxed">{item.summary}</p>}
 
+        {shown.length > 0 && (
         <ul className="mt-4 space-y-2">
           {shown.map((h) => (
             <li key={h} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
@@ -59,6 +60,7 @@ const ExperienceCard = ({ item, current }: { item: ExperienceItem; current: bool
             </li>
           ))}
         </ul>
+        )}
         {hidden > 0 && (
           <button
             onClick={() => setExpanded((e) => !e)}
@@ -70,13 +72,15 @@ const ExperienceCard = ({ item, current }: { item: ExperienceItem; current: bool
           </button>
         )}
 
-        <div className="mt-5 flex flex-wrap gap-1.5">
-          {item.stack.map((s) => (
-            <span key={s} className="chip">
-              {s}
-            </span>
-          ))}
-        </div>
+        {item.stack.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {item.stack.map((s) => (
+              <span key={s} className="chip">
+                {s}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

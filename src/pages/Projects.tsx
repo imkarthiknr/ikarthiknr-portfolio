@@ -31,7 +31,7 @@ const ProjectsPage = () => {
     document.title = 'Projects — Karthik N R';
     window.scrollTo(0, 0);
     return () => {
-      document.title = 'Karthik N R — System Development Engineer at Amazon';
+      document.title = 'Karthik N R — System Development Engineer II at Amazon';
     };
   }, []);
 

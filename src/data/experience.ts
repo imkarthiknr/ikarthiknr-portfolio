@@ -9,18 +9,29 @@ export type Experience = {
   end: string;
   location: string;
   logo: string;
-  summary: string;
+  summary?: string;
   highlights: string[];
   stack: string[];
 };
 
 export const experiences: Experience[] = [
   {
+    id: 'amazon-sde2',
+    company: 'Amazon',
+    role: 'System Development Engineer II',
+    start: 'Jul 2026',
+    end: 'Present',
+    location: 'Chennai, India',
+    logo: awsLogo,
+    highlights: [],
+    stack: [],
+  },
+  {
     id: 'amazon-sde',
     company: 'Amazon',
     role: 'System Development Engineer I',
     start: 'Aug 2024',
-    end: 'Present',
+    end: 'Jun 2026',
     location: 'Chennai, India',
     logo: awsLogo,
     summary:

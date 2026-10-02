@@ -34,7 +34,7 @@ const About = () => (
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <Reveal className="space-y-5 text-lg leading-relaxed text-muted-foreground">
           <p>
-            I'm a <span className="text-foreground">System Development Engineer at Amazon</span> with{' '}
+            I'm a <span className="text-foreground">System Development Engineer II at Amazon</span> with{' '}
             {yearsOfExperience()} years of experience building scalable backend systems and developer tools. I work on
             the infrastructure behind large-scale AI evaluation — the kind of systems that have to be fast, observable
             and boringly reliable.

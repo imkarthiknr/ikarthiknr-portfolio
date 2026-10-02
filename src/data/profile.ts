@@ -2,7 +2,7 @@ export const profile = {
   name: 'Karthik N R',
   fullName: 'Karthik Nachiappan Rajendran',
   initials: 'NRK',
-  role: 'System Development Engineer',
+  role: 'System Development Engineer II',
   company: 'Amazon',
   location: 'Chennai, India',
   email: 'karthik180499@gmail.com',
