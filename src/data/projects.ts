@@ -67,11 +67,11 @@ export const projects: Project[] = [
     description:
       'A personal wealth tracker that looks beyond monthly spending to the full picture of what you own — built as a TypeScript app with a Python service layer and a Supabase Postgres backend.',
     categories: ['Web App'],
-    tags: ['TypeScript', 'Python', 'Supabase', 'PostgreSQL', 'Docker', 'Vercel'],
+    tags: ['TypeScript', 'Python', 'Supabase', 'PostgreSQL', 'Docker', 'Firebase App Hosting'],
     year: 2026,
     status: 'Live',
     github: 'https://github.com/imkarthiknr/Porulux',
-    demo: 'https://porulux.vercel.app',
+    demo: 'https://porulux-web--porulux-app.us-east4.hosted.app/dashboard',
     featured: true,
     highlights: [
       'Net-worth view across assets, not just expenses',
