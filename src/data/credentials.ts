@@ -13,6 +13,7 @@ export const certifications: Certification[] = [
     issuer: 'Anthropic',
     issued: 'Sep 2026',
     expires: 'Sep 2027',
+    link: 'https://www.credly.com/badges/60580889-7bd6-4e14-99c6-627b0038279f/public_url',
   },
   {
     name: 'AWS Certified Solutions Architect – Associate',
