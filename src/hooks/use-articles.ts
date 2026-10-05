@@ -61,7 +61,15 @@ const fetchDevTo = async (): Promise<Article[]> => {
   }));
 };
 
-const fetchMedium = async (): Promise<Article[]> => {
+/** Snapshot written at build time by scripts/fetch-medium.mjs (reliable, refreshed by a daily deploy). */
+const fetchMediumSnapshot = async (): Promise<Article[]> => {
+  const res = await fetch('/medium-feed.json');
+  if (!res.ok) throw new Error(`medium-feed.json: ${res.status}`);
+  return res.json();
+};
+
+/** Live feed via rss2json — can lag behind Medium, so it only supplements the snapshot. */
+const fetchMediumLive = async (): Promise<Article[]> => {
   const feed = encodeURIComponent(`https://medium.com/feed/@${profile.medium.username}`);
   const data = await fetchCached<Rss2JsonResponse>(`https://api.rss2json.com/v1/api.json?rss_url=${feed}`);
   if (data.status !== 'ok') throw new Error('Medium feed unavailable');
@@ -70,7 +78,7 @@ const fetchMedium = async (): Promise<Article[]> => {
     return {
       id: `medium-${item.guid}`,
       title: item.title,
-      url: item.link,
+      url: item.link.split('?')[0],
       excerpt: text.slice(0, 180) + (text.length > 180 ? '…' : ''),
       publishedAt: item.pubDate.replace(' ', 'T') + 'Z',
       readingMinutes: Math.max(1, Math.round(text.split(' ').length / 220)),
@@ -81,17 +89,18 @@ const fetchMedium = async (): Promise<Article[]> => {
   });
 };
 
-/** Articles from DEV.to and Medium, merged newest first. Fails only if both sources fail. */
+/** Articles from DEV.to and Medium, de-duplicated and merged newest first. Fails only if every source fails. */
 export const useArticles = () =>
   useQuery({
     queryKey: ['articles'],
     queryFn: async () => {
-      const results = await Promise.allSettled([fetchDevTo(), fetchMedium()]);
+      // Order matters for de-duplication: the build-time snapshot wins over the live proxy
+      const results = await Promise.allSettled([fetchDevTo(), fetchMediumSnapshot(), fetchMediumLive()]);
       const ok = results.filter((r): r is PromiseFulfilledResult<Article[]> => r.status === 'fulfilled');
       if (ok.length === 0) throw new Error('Could not load articles');
-      return ok
-        .flatMap((r) => r.value)
-        .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+      const byId = new Map<string, Article>();
+      ok.flatMap((r) => r.value).forEach((a) => byId.has(a.id) || byId.set(a.id, a));
+      return [...byId.values()].sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
     },
     staleTime: 30 * 60 * 1000,
     retry: 1,

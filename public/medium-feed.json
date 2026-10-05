@@ -1,0 +1,19 @@
+[
+  {
+    "id": "medium-https://medium.com/p/937670c8fc79",
+    "title": "I Built an AI Code Reviewer That Argues With Itself",
+    "url": "https://medium.com/@ikarthiknr/i-built-an-ai-code-reviewer-that-argues-with-itself-937670c8fc79",
+    "excerpt": "Most AI code reviewers do one thing: diff → model → comments. They are fast, and they are noisy. If a reviewer raises thirty plausible issues and three of them are real, people lea…",
+    "publishedAt": "2026-10-05T09:01:31.000Z",
+    "readingMinutes": 12,
+    "tags": [
+      "agentic-ai",
+      "artificial-intelligence",
+      "code-review",
+      "ai-code-review",
+      "ai-agent"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*WSRubIIrWEkqqeLbZMtTtQ.png",
+    "source": "Medium"
+  }
+]
