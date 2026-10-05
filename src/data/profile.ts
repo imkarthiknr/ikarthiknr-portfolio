@@ -13,13 +13,15 @@ export const profile = {
   github: { username: 'imkarthiknr', url: 'https://github.com/imkarthiknr' },
   medium: { username: 'ikarthiknr', url: 'https://medium.com/@ikarthiknr' },
   devto: { username: 'ikarthiknr', url: 'https://dev.to/ikarthiknr' },
+  // Also set USERNAME in scripts/fetch-leetcode.mjs
+  leetcode: { username: 'imkarthiknr', url: 'https://leetcode.com/u/imkarthiknr/' },
   socials: [
     { label: 'GitHub', href: 'https://github.com/imkarthiknr' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ikarthiknr/' },
     { label: 'X', href: 'https://x.com/ikarthiknr' },
     { label: 'Medium', href: 'https://medium.com/@ikarthiknr' },
     { label: 'DEV', href: 'https://dev.to/ikarthiknr' },
-    { label: 'LeetCode', href: 'https://leetcode.com/u/karthik180499/' },
+    { label: 'LeetCode', href: 'https://leetcode.com/u/imkarthiknr/' },
     { label: 'Instagram', href: 'https://www.instagram.com/ikarthiknr/' },
   ],
 } as const;

@@ -7,6 +7,7 @@ export const sections = [
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'github', label: 'GitHub' },
+  { id: 'leetcode', label: 'LeetCode' },
   { id: 'writing', label: 'Writing' },
   { id: 'credentials', label: 'Credentials' },
   { id: 'contact', label: 'Contact' },

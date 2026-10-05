@@ -1,0 +1,56 @@
+{
+  "username": "imkarthiknr",
+  "profileUrl": "https://leetcode.com/u/imkarthiknr/",
+  "fetchedAt": "2026-10-05T10:40:18.550Z",
+  "solved": {
+    "all": 5,
+    "easy": 5,
+    "medium": 0,
+    "hard": 0
+  },
+  "totals": {
+    "all": 4073,
+    "easy": 969,
+    "medium": 2124,
+    "hard": 980
+  },
+  "ranking": 5000001,
+  "contest": null,
+  "badges": 0,
+  "streak": 0,
+  "activeDays": 0,
+  "calendar": {},
+  "languages": [
+    {
+      "name": "Python3",
+      "solved": 4
+    },
+    {
+      "name": "Java",
+      "solved": 1
+    }
+  ],
+  "topics": [
+    {
+      "name": "Array",
+      "solved": 5
+    },
+    {
+      "name": "Hash Table",
+      "solved": 2
+    },
+    {
+      "name": "Sorting",
+      "solved": 2
+    },
+    {
+      "name": "Divide and Conquer",
+      "solved": 1
+    },
+    {
+      "name": "Math",
+      "solved": 1
+    }
+  ],
+  "recent": []
+}

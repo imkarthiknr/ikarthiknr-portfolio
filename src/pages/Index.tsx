@@ -5,11 +5,12 @@ import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
 import Skills from '@/components/sections/Skills';
 import GitHubActivity from '@/components/sections/GitHubActivity';
+import LeetCodeActivity from '@/components/sections/LeetCodeActivity';
 import Writing from '@/components/sections/Writing';
 import Credentials from '@/components/sections/Credentials';
 import Contact from '@/components/sections/Contact';
 
-const sections = [Hero, About, Experience, Projects, Skills, GitHubActivity, Writing, Credentials, Contact];
+const sections = [Hero, About, Experience, Projects, Skills, GitHubActivity, LeetCodeActivity, Writing, Credentials, Contact];
 
 const Index = () => (
   <main>

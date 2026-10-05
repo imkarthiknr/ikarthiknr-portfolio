@@ -1,103 +1,32 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { formatDistanceToNowStrict, format, parseISO } from 'date-fns';
+import { useMemo } from 'react';
+import { formatDistanceToNowStrict, parseISO } from 'date-fns';
 import { ArrowUpRight, GitCommitHorizontal, Star } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { profile } from '@/data/profile';
-import { useContributions, useGitHubRepos, useGitHubUser, type ContributionDay } from '@/hooks/use-github';
+import { useContributions, useGitHubRepos, useGitHubUser } from '@/hooks/use-github';
 import { languageColor } from '@/lib/languages';
+import ActivityHeatmap from '../ActivityHeatmap';
 import SectionHeading from '../SectionHeading';
 import Reveal from '../Reveal';
 import { GithubIcon } from '../icons';
 
-const levelStyle = (level: number) =>
-  level === 0
-    ? { backgroundColor: 'hsl(var(--heat-0))' }
-    : { backgroundColor: `hsl(var(--primary) / ${[0, 0.3, 0.5, 0.75, 1][level]})` };
-
-/** Splits days into week columns (Sun→Sat), padding the first week. */
-const toWeeks = (days: ContributionDay[]) => {
-  const weeks: (ContributionDay | null)[][] = [];
-  let week: (ContributionDay | null)[] = Array(parseISO(days[0].date).getDay()).fill(null);
-  for (const d of days) {
-    week.push(d);
-    if (week.length === 7) {
-      weeks.push(week);
-      week = [];
-    }
-  }
-  if (week.length) weeks.push(week);
-  return weeks;
-};
-
 const Heatmap = () => {
   const { data, isLoading, isError } = useContributions();
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const weeks = useMemo(() => (data ? toWeeks(data.days) : []), [data]);
-
-  // On narrow screens, start scrolled to the most recent weeks
-  useEffect(() => {
-    if (scrollRef.current) scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-  }, [weeks.length]);
 
   if (isLoading) return <Skeleton className="h-[150px] w-full rounded-xl" />;
   if (isError || !data)
     return <p className="py-10 text-center text-sm text-muted-foreground">Contribution graph is unavailable right now.</p>;
 
   return (
-    <div>
-      <div ref={scrollRef} className="overflow-x-auto pb-2 [scrollbar-width:thin]">
-        <div className="inline-flex min-w-full flex-col gap-1.5">
-          {/* Month labels */}
-          <div className="flex gap-[3px] pl-0 text-[10px] text-muted-foreground">
-            {weeks.map((w, i) => {
-              const first = w.find(Boolean);
-              const label = first && parseISO(first.date).getDate() <= 7 ? format(parseISO(first.date), 'MMM') : '';
-              return (
-                <span key={i} className="w-[11px] shrink-0 overflow-visible whitespace-nowrap">
-                  {label}
-                </span>
-              );
-            })}
-          </div>
-          <div className="flex gap-[3px]">
-            {weeks.map((w, i) => (
-              <div key={i} className="flex flex-col gap-[3px]">
-                {Array.from({ length: 7 }, (_, d) => {
-                  const day = w[d];
-                  if (!day) return <span key={d} className="h-[11px] w-[11px]" />;
-                  return (
-                    <Tooltip key={d} delayDuration={50}>
-                      <TooltipTrigger asChild>
-                        <span className="h-[11px] w-[11px] rounded-[3px]" style={levelStyle(day.level)} />
-                      </TooltipTrigger>
-                      <TooltipContent side="top" className="text-xs">
-                        <span className="font-medium">
-                          {day.count} contribution{day.count === 1 ? '' : 's'}
-                        </span>{' '}
-                        on {format(parseISO(day.date), 'MMM d, yyyy')}
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-        <span>
+    <ActivityHeatmap
+      days={data.days}
+      unit="contribution"
+      summary={
+        <>
           <span className="font-medium text-foreground">{data.total}</span> contributions in the last year
-        </span>
-        <span className="flex items-center gap-1">
-          Less
-          {[0, 1, 2, 3, 4].map((l) => (
-            <span key={l} className="h-[10px] w-[10px] rounded-[2px]" style={levelStyle(l)} />
-          ))}
-          More
-        </span>
-      </div>
-    </div>
+        </>
+      }
+    />
   );
 };
 
