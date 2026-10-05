@@ -98,7 +98,7 @@ const ProjectCard = ({ project, showHighlights = false }: ProjectCardProps) => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-foreground hover:text-primary"
             >
-              Live site <ArrowUpRight className="h-4 w-4" />
+              {project.demoLabel ?? 'Live site'} <ArrowUpRight className="h-4 w-4" />
             </a>
           )}
           <a

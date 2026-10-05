@@ -11,6 +11,8 @@ export type Project = {
   status: 'Live' | 'Alpha' | 'In development';
   github: string;
   demo?: string;
+  /** Label for the demo link; defaults to "Live site" */
+  demoLabel?: string;
   featured?: boolean;
   highlights: string[];
   /** Hue (0-360) for the generated cover art */
@@ -32,6 +34,8 @@ export const projects: Project[] = [
     year: 2026,
     status: 'Alpha',
     github: 'https://github.com/imkarthiknr/Scrutai',
+    demo: 'https://pypi.org/project/scrutai/',
+    demoLabel: 'PyPI package',
     featured: true,
     highlights: [
       'Specialist agents with real tools — file reads, ripgrep, git blame, linters',
